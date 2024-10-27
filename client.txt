@@ -1,0 +1,54 @@
+
+1->a
+
+    # Setting up the interface with IP4 address
+
+    sudo ip addr add 20.1.1.1/24 dev enp0s3
+
+    #Enable the inteface
+    sudo ip link set enp0s3 up
+
+	
+    #Connecting routes
+    sudo ip route add 40.1.1.1 via 20.1.1.2
+
+    sudo ip route add 40.1.1.3 via 20.1.1.2
+
+
+2->a 
+    curl http://40.1.1.1   
+
+    ping 40.1.1.1 
+
+2->b
+    curl http://40.1.1.1   
+
+    ping -c 4 40.1.1.1 
+
+3->a
+    For TDP part
+    iperf-c 40.1.1.3
+
+    For UCP part
+    iperf -c 40.1.1.3 -u -p 6003
+
+3->b 
+
+    ping 40.1.1.1 -c 10
+
+
+    ping 40.1.1.3  -c 10
+
+
+
+4-c->
+    sudo tcpdump -i enp0s3 -n
+
+
+5-b
+    ping -c 10 40.1.1.1
+
+
+    ping -c 10 40.1.1.3
+
+

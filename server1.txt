@@ -1,0 +1,15 @@
+
+1->a
+   # Setting up the interface with IP4 address
+    sudo ip addr add 40.1.1.1/24 dev enp0s3
+
+   #Enable the inteface
+    sudo ip link set enp0s3 up
+ 
+   #Connecting routes
+    sudo ip route add 20.1.1.1 via 40.1.1.2
+
+
+
+4->c
+    sudo tcpdump -i enp0s3 -n
